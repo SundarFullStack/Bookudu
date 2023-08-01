@@ -12,11 +12,11 @@ const bodyParser = require("body-parser");
 
 require("dotenv").config();
 
-// console.log(process.env);
+console.log(process.env);
 
 //CORS
 
-// http_server.use(cors());
+http_server.use(cors());
 
 //BODY PARSER
 
