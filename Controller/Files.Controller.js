@@ -1,6 +1,6 @@
 const FilesRouter = require("express").Router();
 
-//CREATING AN FILE USING API REQUEST
+//1. CREATING AN FILE USING API REQUEST
 
 const fs = require("fs/promises");
 
@@ -27,7 +27,30 @@ FilesRouter.get("/createFile", (request, response, next) => {
   });
 });
 
-//READING AN FILE USING API REQUEST
+//2.  PASSING CONTENT THROUGH PARAMS
+
+async function createFile(data) {
+  try {
+    await fs.writeFile(path, data ? data : content);
+    console.log("file Created");
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+//ROUTER
+
+FilesRouter.get("/createCustomFile/:content", (request, response, next) => {
+  const { content } = request.params;
+  let data = content;
+  createFile(data);
+
+  return response.status(200).json({
+    message: "CUSTOM FILE CREATED SUCCESSFULLY",
+  });
+});
+
+//3. READING AN FILE USING API REQUEST
 
 async function readFile() {
   try {
