@@ -47,7 +47,7 @@ UserRouter.post('/create',(request,response,next)=>{
   const User = new UserModel(data);
   // console.log("user",User);
   User.save().then((result)=>{
-    console.log(result);
+    // console.log(result);
     if(result && result._id){
       return response.status(200).json({
         success:true,
